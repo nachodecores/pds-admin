@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import "./Panel.css";
 
 const Panel = () => {
@@ -18,19 +18,19 @@ const Panel = () => {
         </ul>
         <ul class="side-menu">
           <li>
-            <Link href="#">
+            <Link to={"/lote"}>
               <i class="bx bxs-cog"></i>
               <span class="text">Lote</span>
             </Link>
           </li>
           <li>
-            <Link href="#">
+            <Link to={"/usuario"}>
               <i class="bx bxs-cog"></i>
               <span class="text">Usuario</span>
             </Link>
           </li>
           <li>
-            <Link href="#">
+            <Link to={"/remate"}>
               <i class="bx bxs-cog"></i>
               <span class="text">Remate</span>
             </Link>
@@ -58,6 +58,8 @@ const Panel = () => {
         </nav>
 
         <main>
+          <Outlet />
+          {/*
           <div class="head-title left">
             <h1>Remate #14</h1>
           </div>
@@ -139,6 +141,7 @@ const Panel = () => {
               </table>
             </div>
           </div>
+          */}
         </main>
       </section>
     </>
