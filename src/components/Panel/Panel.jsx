@@ -20,19 +20,19 @@ const Panel = () => {
           <li>
             <Link href="#">
               <i class="bx bxs-cog"></i>
-              <span class="text">Lotes</span>
+              <span class="text">Lote</span>
             </Link>
           </li>
           <li>
             <Link href="#">
               <i class="bx bxs-cog"></i>
-              <span class="text">Usuarios</span>
+              <span class="text">Usuario</span>
             </Link>
           </li>
           <li>
             <Link href="#">
               <i class="bx bxs-cog"></i>
-              <span class="text">Remates</span>
+              <span class="text">Remate</span>
             </Link>
           </li>
           <li>
@@ -96,8 +96,11 @@ const Panel = () => {
               <table>
                 <thead>
                   <tr>
-                    <th>User</th>
-                    <th>Date Order</th>
+                    <th>Lote</th>
+                    <th>Vendedor</th>
+                    <th>Cantidad</th>
+                    <th>Categoría</th>
+                    <th>Raza</th>
                     <th>Status</th>
                   </tr>
                 </thead>
