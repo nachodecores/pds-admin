@@ -5,39 +5,14 @@ const Panel = () => {
   return (
     <>
       <section id="sidebar">
-        <Link href="#" class="brand">
-          <i class="bx bxs-smile"></i>
-          <span class="text">AdminHub</span>
+        <Link href="#" class="profile">
+          <img src="./img/logo-pds-entero.svg" alt="" />
         </Link>
         <ul class="side-menu top">
           <li class="active">
             <Link href="#">
               <i class="bx bxs-dashboard"></i>
-              <span class="text">Dashboard</span>
-            </Link>
-          </li>
-          <li>
-            <Link href="#">
-              <i class="bx bxs-shopping-bag-alt"></i>
-              <span class="text">My Store</span>
-            </Link>
-          </li>
-          <li>
-            <Link href="#">
-              <i class="bx bxs-doughnut-chart"></i>
-              <span class="text">Analytics</span>
-            </Link>
-          </li>
-          <li>
-            <Link href="#">
-              <i class="bx bxs-message-dots"></i>
-              <span class="text">Message</span>
-            </Link>
-          </li>
-          <li>
-            <Link href="#">
-              <i class="bx bxs-group"></i>
-              <span class="text">Team</span>
+              <span class="text">Remate #14</span>
             </Link>
           </li>
         </ul>
@@ -45,7 +20,19 @@ const Panel = () => {
           <li>
             <Link href="#">
               <i class="bx bxs-cog"></i>
-              <span class="text">Settings</span>
+              <span class="text">Lotes</span>
+            </Link>
+          </li>
+          <li>
+            <Link href="#">
+              <i class="bx bxs-cog"></i>
+              <span class="text">Usuarios</span>
+            </Link>
+          </li>
+          <li>
+            <Link href="#">
+              <i class="bx bxs-cog"></i>
+              <span class="text">Remates</span>
             </Link>
           </li>
           <li>
@@ -59,18 +46,6 @@ const Panel = () => {
 
       <section id="content">
         <nav>
-          <i class="bx bx-menu"></i>
-          <Link href="#" class="nav-link">
-            Categories
-          </Link>
-          <form action="#">
-            <div class="form-input">
-              <input type="search" placeholder="Search..." />
-              <button type="submit" class="search-btn">
-                <i class="bx bx-search"></i>
-              </button>
-            </div>
-          </form>
           <input type="checkbox" id="switch-mode" hidden />
           <label for="switch-mode" class="switch-mode"></label>
           <Link href="#" class="notification">
@@ -83,49 +58,30 @@ const Panel = () => {
         </nav>
 
         <main>
-          <div class="head-title">
-            <div class="left">
-              <h1>Dashboard</h1>
-              <ul class="breadcrumb">
-                <li>
-                  <Link href="#">Dashboard</Link>
-                </li>
-                <li>
-                  <i class="bx bx-chevron-right"></i>
-                </li>
-                <li>
-                  <Link class="active" href="#">
-                    Home
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <Link href="#" class="btn-download">
-              <i class="bx bxs-cloud-download"></i>
-              <span class="text">Download PDF</span>
-            </Link>
+          <div class="head-title left">
+            <h1>Remate #14</h1>
           </div>
 
           <ul class="box-info">
             <li>
               <i class="bx bxs-calendar-check"></i>
               <span class="text">
-                <h3>1020</h3>
-                <p>New Order</p>
+                <h3>US$ 2.1</h3>
+                <p>Terneros raza carne</p>
               </span>
             </li>
             <li>
               <i class="bx bxs-group"></i>
               <span class="text">
-                <h3>2834</h3>
-                <p>Visitors</p>
+                <h3>90 %</h3>
+                <p>Lotes vendidos</p>
               </span>
             </li>
             <li>
               <i class="bx bxs-dollar-circle"></i>
               <span class="text">
-                <h3>$2543</h3>
-                <p>Total Sales</p>
+                <h3>16</h3>
+                <p>Lotes preofertados</p>
               </span>
             </li>
           </ul>
@@ -133,7 +89,7 @@ const Panel = () => {
           <div class="table-data">
             <div class="order">
               <div class="head">
-                <h3>Recent Orders</h3>
+                <h3>Catálogo</h3>
                 <i class="bx bx-search"></i>
                 <i class="bx bx-filter"></i>
               </div>
@@ -153,7 +109,7 @@ const Panel = () => {
                     </td>
                     <td>01-10-2021</td>
                     <td>
-                      <span class="status completed">Completed</span>
+                      <span class="status completed">Vendido</span>
                     </td>
                   </tr>
                   <tr>
@@ -176,57 +132,8 @@ const Panel = () => {
                       <span class="status process">Process</span>
                     </td>
                   </tr>
-                  <tr>
-                    <td>
-                      <img src="img/people.png" alt="" />
-                      <p>John Doe</p>
-                    </td>
-                    <td>01-10-2021</td>
-                    <td>
-                      <span class="status pending">Pending</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="img/people.png" alt="" />
-                      <p>John Doe</p>
-                    </td>
-                    <td>01-10-2021</td>
-                    <td>
-                      <span class="status completed">Completed</span>
-                    </td>
-                  </tr>
                 </tbody>
               </table>
-            </div>
-            <div class="todo">
-              <div class="head">
-                <h3>Todos</h3>
-                <i class="bx bx-plus"></i>
-                <i class="bx bx-filter"></i>
-              </div>
-              <ul class="todo-list">
-                <li class="completed">
-                  <p>Todo List</p>
-                  <i class="bx bx-dots-vertical-rounded"></i>
-                </li>
-                <li class="completed">
-                  <p>Todo List</p>
-                  <i class="bx bx-dots-vertical-rounded"></i>
-                </li>
-                <li class="not-completed">
-                  <p>Todo List</p>
-                  <i class="bx bx-dots-vertical-rounded"></i>
-                </li>
-                <li class="completed">
-                  <p>Todo List</p>
-                  <i class="bx bx-dots-vertical-rounded"></i>
-                </li>
-                <li class="not-completed">
-                  <p>Todo List</p>
-                  <i class="bx bx-dots-vertical-rounded"></i>
-                </li>
-              </ul>
             </div>
           </div>
         </main>
