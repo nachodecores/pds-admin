@@ -66,6 +66,13 @@ const Panel = () => {
             <li>
               <i class="bx bxs-calendar-check"></i>
               <span class="text">
+                <h3>432</h3>
+                <p>Animales inscriptos</p>
+              </span>
+            </li>
+            <li>
+              <i class="bx bxs-calendar-check"></i>
+              <span class="text">
                 <h3>US$ 2.1</h3>
                 <p>Terneros raza carne</p>
               </span>
@@ -107,7 +114,9 @@ const Panel = () => {
                 <tbody>
                   <tr>
                     <td>
-                      <img src="img/people.png" alt="" />
+                      <p>21</p>
+                    </td>
+                    <td>
                       <p>John Doe</p>
                     </td>
                     <td>01-10-2021</td>
@@ -117,7 +126,9 @@ const Panel = () => {
                   </tr>
                   <tr>
                     <td>
-                      <img src="img/people.png" alt="" />
+                      <p>21</p>
+                    </td>
+                    <td>
                       <p>John Doe</p>
                     </td>
                     <td>01-10-2021</td>
@@ -127,7 +138,9 @@ const Panel = () => {
                   </tr>
                   <tr>
                     <td>
-                      <img src="img/people.png" alt="" />
+                      <p>21</p>
+                    </td>
+                    <td>
                       <p>John Doe</p>
                     </td>
                     <td>01-10-2021</td>
