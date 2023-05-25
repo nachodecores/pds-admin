@@ -5,40 +5,40 @@ const Panel = () => {
   return (
     <>
       <section id="sidebar">
-        <Link to={"/"} class="profile">
+        <Link to={"/"} className="profile">
           <img src="./img/logo-pds-entero.svg" alt="" />
         </Link>
-        <ul class="side-menu top">
-          <li class="active">
+        <ul className="side-menu top">
+          <li className="active">
             <Link href="#">
-              <i class="bx bxs-dashboard"></i>
-              <span class="text">Remate #14</span>
+              <i className="bx bxs-dashboard"></i>
+              <span className="text">Remate #14</span>
             </Link>
           </li>
         </ul>
-        <ul class="side-menu">
+        <ul className="side-menu">
           <li>
             <Link to={"/lote"}>
-              <i class="bx bxs-cog"></i>
-              <span class="text">Lote</span>
+              <i className="bx bxs-cog"></i>
+              <span className="text">Lote</span>
             </Link>
           </li>
           <li>
             <Link to={"/usuario"}>
-              <i class="bx bxs-cog"></i>
-              <span class="text">Usuario</span>
+              <i className="bx bxs-cog"></i>
+              <span className="text">Usuario</span>
             </Link>
           </li>
           <li>
             <Link to={"/remate"}>
-              <i class="bx bxs-cog"></i>
-              <span class="text">Remate</span>
+              <i className="bx bxs-cog"></i>
+              <span className="text">Remate</span>
             </Link>
           </li>
           <li>
-            <Link href="#" class="logout">
-              <i class="bx bxs-log-out-circle"></i>
-              <span class="text">Logout</span>
+            <Link href="#" className="logout">
+              <i className="bx bxs-log-out-circle"></i>
+              <span className="text">Logout</span>
             </Link>
           </li>
         </ul>
@@ -47,12 +47,12 @@ const Panel = () => {
       <section id="content">
         <nav>
           <input type="checkbox" id="switch-mode" hidden />
-          <label for="switch-mode" class="switch-mode"></label>
-          <Link href="#" class="notification">
-            <i class="bx bxs-bell"></i>
-            <span class="num">8</span>
+          <label htmlFor="switch-mode" className="switch-mode"></label>
+          <Link href="#" className="notification">
+            <i className="bx bxs-bell"></i>
+            <span className="num">8</span>
           </Link>
-          <Link href="#" class="profile">
+          <Link href="#" className="profile">
             <img src="img/people.png" alt="" />
           </Link>
         </nav>
