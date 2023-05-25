@@ -1,10 +1,18 @@
 import Table from "react-bootstrap/Table";
+import { AiOutlineEdit } from "react-icons/ai";
+import { BsTrash3Fill } from "react-icons/bs";
 import "../Usuario/Usuario.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Usuario = () => {
   const [listUsers, setListUsers] = useState();
+  const handleEdit = () => {
+    console.log("edit..");
+  };
+  const handleRemove = () => {
+    console.log("remove..");
+  };
   useEffect(() => {
     const getUsers = async () => {
       const response = await axios({
@@ -15,7 +23,6 @@ const Usuario = () => {
         },
       });
       setListUsers(response.data);
-      console.log("Response: ", response.data);
     };
 
     getUsers();
@@ -31,6 +38,7 @@ const Usuario = () => {
           <th>Departament</th>
           <th>Password</th>
           <th>Company</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -46,6 +54,18 @@ const Usuario = () => {
               <td>{user.department}</td>
               <td>{user.password}</td>
               <td>{user.company}</td>
+              <td className="d-flex justify-content-around align-items-center">
+                <AiOutlineEdit
+                  color="orange"
+                  cursor="pointer"
+                  onClick={handleEdit}
+                />
+                <BsTrash3Fill
+                  color="red"
+                  cursor="pointer"
+                  onClick={handleRemove}
+                />
+              </td>
             </tr>
           ))}
       </tbody>
