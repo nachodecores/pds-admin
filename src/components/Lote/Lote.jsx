@@ -4,11 +4,37 @@ import { Table } from "react-bootstrap";
 import { AiOutlineEdit } from "react-icons/ai";
 import axios from "axios";
 import { BsTrash3Fill } from "react-icons/bs";
+import Swal from "sweetalert2";
 
 const Lote = () => {
   const [listHerds, setListHerds] = useState();
   const handleEdit = () => {};
-  const handleRemove = () => {};
+  const handleRemove = (herd) => {
+    console.log("parameter: ", herd);
+    Swal.fire({
+      title: "Do you Want to Delete this Lote?",
+      showDenyButton: true,
+      confirmButtonText: "Yes",
+      denyButtonText: "No",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const response = await axios({
+          url: `http://localhost:8000/catalogue/${herd}`,
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+          },
+        });
+
+        //    Swal.fire("Saved!", "", "success");
+        Swal.fire(response.data.message, "", "success");
+
+        console.log("response:", response.data);
+      } else if (result.isDenied) {
+        Swal.fire("Action Canceled", "", "error");
+      }
+    });
+  };
 
   useEffect(() => {
     const getHerds = async () => {
@@ -46,7 +72,7 @@ const Lote = () => {
               <td>{herd.breed}</td>
               <td>{herd.quantity}</td>
               <td>{herd.classType}</td>
-              <td>
+              <td className="d-flex justify-content-between">
                 <AiOutlineEdit
                   color="orange"
                   cursor="pointer"
@@ -55,7 +81,7 @@ const Lote = () => {
                 <BsTrash3Fill
                   color="red"
                   cursor="pointer"
-                  onClick={handleRemove}
+                  onClick={() => handleRemove(herd.id)}
                 />
               </td>
             </tr>
