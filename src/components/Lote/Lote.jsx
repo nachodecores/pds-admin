@@ -13,12 +13,20 @@ const Lote = () => {
       position: "bottom-right",
       duration: 3000,
       icon: "✅",
+      style: {
+        background: "black",
+        color: "white",
+      },
     });
   const notifyCancel = () =>
     toast.error("Action Cancel for User", {
       position: "bottom-right",
       duration: 3000,
       icon: "❌",
+      style: {
+        background: "black",
+        color: "white",
+      },
     });
 
   const [listHerds, setListHerds] = useState();
@@ -60,7 +68,7 @@ const Lote = () => {
     getHerds();
   }, []);
   return (
-    <Table striped bordered hover>
+    <Table bordered hover>
       <thead>
         <tr>
           <th>ID</th>
