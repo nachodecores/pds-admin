@@ -5,8 +5,22 @@ import { AiOutlineEdit } from "react-icons/ai";
 import axios from "axios";
 import { BsTrash3Fill } from "react-icons/bs";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const Lote = () => {
+  const notifySuccess = (message) =>
+    toast.success(message, {
+      position: "bottom-right",
+      duration: 3000,
+      icon: "✅",
+    });
+  const notifyCancel = () =>
+    toast.error("Action Cancel for User", {
+      position: "bottom-right",
+      duration: 3000,
+      icon: "❌",
+    });
+
   const [listHerds, setListHerds] = useState();
   const handleEdit = () => {};
   const handleRemove = (herd) => {
@@ -25,13 +39,9 @@ const Lote = () => {
             "Content-type": "application/json",
           },
         });
-
-        //    Swal.fire("Saved!", "", "success");
-        Swal.fire(response.data.message, "", "success");
-
-        console.log("response:", response.data);
+        notifySuccess(response.data.message);
       } else if (result.isDenied) {
-        Swal.fire("Action Canceled", "", "error");
+        notifyCancel();
       }
     });
   };

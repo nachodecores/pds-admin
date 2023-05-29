@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
 import Login from "./components/Login/Login";
 import Panel from "./components/Panel/Panel";
@@ -9,6 +10,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 export default function App() {
   return (
     <>
+      <Toaster />
       <Routes>
         <Route path="/login" Component={Login}></Route>
         <Route path="/" Component={Panel}>
