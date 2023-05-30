@@ -6,6 +6,7 @@ import Remate from "./components/Remate/Remate";
 import Usuario from "./components/Usuario/Usuario";
 import Lote from "./components/Lote/Lote";
 import Dashboard from "./components/Dashboard/Dashboard";
+import AddHerd from "./components/Forms/AddHerd";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/login" Component={Login}></Route>
         <Route path="/" Component={Panel}>
           <Route path="/" Component={Dashboard} />
+          <Route path="/addherd" Component={AddHerd}></Route>
           <Route path="remate" Component={Remate} />
           <Route path="usuario" Component={Usuario} />
           <Route path="lote" Component={Lote} />

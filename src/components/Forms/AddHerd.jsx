@@ -1,9 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Form, Button, FloatingLabel, Col, Row } from "react-bootstrap";
-// import axios from "axios";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-export default function Herd() {
+export default function AddHerd() {
+  // Llamada para traer escritorios
+  const [auctioneers, setAuctioneers] = useState([]);
+  useEffect(() => {
+    const getAuctioneers = async () => {
+      const response = await axios({
+        method: "GET",
+        url: `http://localhost:8000/auctioneers`,
+      });
+      setAuctioneers(response.data);
+    };
+    getAuctioneers();
+  }, []);
+
+  // Llamada para traer usuarios
+
   return (
     <>
       <Link to="/">Home</Link>
@@ -32,10 +48,13 @@ export default function Herd() {
             >
               <Form.Select aria-label="Default select example">
                 <option></option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="4">Four</option>
+                {auctioneers.map((auctioneer) => {
+                  return (
+                    <option key={auctioneer.id} value={auctioneer.id}>
+                      {auctioneer.name}
+                    </option>
+                  );
+                })}
               </Form.Select>
             </FloatingLabel>
           </Col>
@@ -47,7 +66,7 @@ export default function Herd() {
               label="Cantidad"
               className="mb-3"
             >
-              <Form.Control type="text" placeholder="Nombre" />
+              <Form.Control type="number" placeholder="Nombre" />
             </FloatingLabel>
           </Col>
           <Col>
@@ -116,8 +135,30 @@ export default function Herd() {
           label="Comentarios"
           className="mb-3"
         >
-          <Form.Control type="number" placeholder="Teléfono" />
+          <Form.Control type="textarea" placeholder="Teléfono" />
         </FloatingLabel>
+
+        <Row>
+          <Col>
+            <FloatingLabel
+              controlId="floatingInput"
+              label="Inspección"
+              className="mb-3"
+            >
+              <Form.Control type="number" placeholder="Teléfono" />
+            </FloatingLabel>
+          </Col>
+          <Col>
+            <FloatingLabel
+              controlId="floatingInput"
+              label="Certificador"
+              className="mb-3"
+            >
+              <Form.Control type="number" placeholder="Teléfono" />
+            </FloatingLabel>
+          </Col>
+        </Row>
+
         <FloatingLabel controlId="floatingInput" label="Video" className="mb-3">
           <Form.Control type="number" placeholder="Teléfono" />
         </FloatingLabel>
