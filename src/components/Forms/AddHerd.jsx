@@ -3,10 +3,38 @@ import { Link } from "react-router-dom";
 import { Form, Button, FloatingLabel, Col, Row } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import CropSquareRoundedIcon from "@mui/icons-material/CropSquareRounded";
+import SquareRoundedIcon from "@mui/icons-material/SquareRounded";
+import Rating from "@mui/material/Rating";
+import { styled } from "@mui/material/styles";
 
 export default function AddHerd() {
-  // Llamada para traer escritorios
+  const categories = [
+    "Terneros",
+    "Terneras",
+    "Novillos",
+    "Vaquillonas",
+    "Vaquillonas preñadas",
+    "Vaquillonas próximas",
+    "Vaquillonas en producción",
+    "Vacas",
+    "Vacas preñadas",
+    "Vacas próximas",
+    "Vacas en producción",
+    "Vacas de invernada",
+    "Toro",
+    "Caballo",
+    "Yegua",
+    "Corederos/as",
+    "Borregos/as",
+    "Ovejas",
+    "Carneros",
+  ];
+  const breeds = ["Holando", "Angus", "Jersey", "Hereford", "Cruza", "Kiwi"];
   const [auctioneers, setAuctioneers] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  // Llamada para traer escritorios y users
   useEffect(() => {
     const getAuctioneers = async () => {
       const response = await axios({
@@ -16,9 +44,25 @@ export default function AddHerd() {
       setAuctioneers(response.data);
     };
     getAuctioneers();
+
+    const getUsers = async () => {
+      const response = await axios({
+        method: "GET",
+        url: `http://localhost:8000/users`,
+      });
+      setUsers(response.data);
+    };
+    getUsers();
   }, []);
 
-  // Llamada para traer usuarios
+  const StyledRating = styled(Rating)({
+    "& .MuiRating-iconFilled": {
+      color: "#0e4056",
+    },
+    "& .MuiRating-iconHover": {
+      color: "#bfc8c9",
+    },
+  });
 
   return (
     <>
@@ -34,9 +78,13 @@ export default function AddHerd() {
             >
               <Form.Select aria-label="Default select example">
                 <option></option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                {users.map((user) => {
+                  return (
+                    <option>
+                      {user.lastname}, {user.firstname}
+                    </option>
+                  );
+                })}
               </Form.Select>
             </FloatingLabel>
           </Col>
@@ -75,7 +123,12 @@ export default function AddHerd() {
               label="Categoría"
               className="mb-3"
             >
-              <Form.Control type="text" placeholder="Apellido" />
+              <Form.Select aria-label="Default select example">
+                <option></option>
+                {categories.map((category) => {
+                  return <option>{category}</option>;
+                })}
+              </Form.Select>
             </FloatingLabel>
           </Col>
           <Col>
@@ -84,7 +137,12 @@ export default function AddHerd() {
               label="Raza"
               className="mb-3"
             >
-              <Form.Control type="text" placeholder="Apellido" />
+              <Form.Select aria-label="Default select example">
+                <option></option>
+                {breeds.map((breed) => {
+                  return <option>{breed}</option>;
+                })}
+              </Form.Select>
             </FloatingLabel>
           </Col>
         </Row>
@@ -111,31 +169,37 @@ export default function AddHerd() {
 
         <Row>
           <Col>
-            <FloatingLabel
-              controlId="floatingInput"
-              label="Clase"
-              className="mb-3"
-            >
-              <Form.Control type="text" placeholder="Dirección" />
-            </FloatingLabel>
+            <div className="class-type d-flex">
+              <p>Clase</p>
+              <StyledRating
+                name="customized-color"
+                defaultValue={0}
+                precision={1}
+                icon={<SquareRoundedIcon fontSize="inherit" />}
+                emptyIcon={<CropSquareRoundedIcon fontSize="inherit" />}
+              />
+            </div>
           </Col>
           <Col>
-            <FloatingLabel
-              controlId="floatingInput"
-              label="Estado"
-              className="mb-3"
-            >
-              <Form.Control type="text" placeholder="Paraje" />
-            </FloatingLabel>
+            <div className="status d-flex">
+              <p>Estado</p>
+              <StyledRating
+                name="customized-color"
+                defaultValue={0}
+                precision={1}
+                icon={<SquareRoundedIcon fontSize="inherit" />}
+                emptyIcon={<CropSquareRoundedIcon fontSize="inherit" />}
+              />
+            </div>
           </Col>
         </Row>
 
         <FloatingLabel
           controlId="floatingInput"
-          label="Comentarios"
+          label="Descripción"
           className="mb-3"
         >
-          <Form.Control type="textarea" placeholder="Teléfono" />
+          <Form.Control type="textarea" placeholder="Descripción" />
         </FloatingLabel>
 
         <Row>
