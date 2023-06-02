@@ -31,7 +31,6 @@ const Lote = () => {
     });
 
   const [listHerds, setListHerds] = useState();
-  const handleEdit = () => {};
   const handleRemove = (herd) => {
     console.log("parameter: ", herd);
     Swal.fire({
@@ -102,11 +101,9 @@ const Lote = () => {
                 <td>{herd.quantity}</td>
                 <td>{herd.classType}</td>
                 <td className="d-flex justify-content-between">
-                  <AiOutlineEdit
-                    color="orange"
-                    cursor="pointer"
-                    onClick={handleEdit}
-                  />
+                  <Link state={herd} to={"/edithead"}>
+                    <AiOutlineEdit color="orange" cursor="pointer" />
+                  </Link>
                   <BsTrash3Fill
                     color="red"
                     cursor="pointer"
