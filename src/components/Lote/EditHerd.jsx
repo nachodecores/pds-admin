@@ -204,7 +204,11 @@ export default function EditHeard() {
           label="Descripción"
           className="mb-3"
         >
-          <Form.Control type="textarea" placeholder="Descripción" />
+          <Form.Control
+            type="textarea"
+            placeholder="Descripción"
+            value={state.description}
+          />
         </FloatingLabel>
 
         <Row>
@@ -214,7 +218,11 @@ export default function EditHeard() {
               label="Inspección"
               className="mb-3"
             >
-              <Form.Control type="number" placeholder="Teléfono" />
+              <Form.Control
+                type="number"
+                placeholder="Teléfono"
+                value={state.inspection}
+              />
             </FloatingLabel>
           </Col>
           <Col>
