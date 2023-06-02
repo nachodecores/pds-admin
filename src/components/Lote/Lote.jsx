@@ -6,6 +6,7 @@ import axios from "axios";
 import { BsTrash3Fill } from "react-icons/bs";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const Lote = () => {
   const notifySuccess = (message) =>
@@ -68,44 +69,55 @@ const Lote = () => {
     getHerds();
   }, []);
   return (
-    <Table bordered hover>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Category</th>
-          <th>Original Price</th>
-          <th>Breed</th>
-          <th>Quantity</th>
-          <th>classType</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {listHerds &&
-          listHerds.map((herd) => (
-            <tr key={herd.id}>
-              <td>{herd.id}</td>
-              <td>{herd.category}</td>
-              <td>${herd.originalPrice}</td>
-              <td>{herd.breed}</td>
-              <td>{herd.quantity}</td>
-              <td>{herd.classType}</td>
-              <td className="d-flex justify-content-between">
-                <AiOutlineEdit
-                  color="orange"
-                  cursor="pointer"
-                  onClick={handleEdit}
-                />
-                <BsTrash3Fill
-                  color="red"
-                  cursor="pointer"
-                  onClick={() => handleRemove(herd.id)}
-                />
-              </td>
-            </tr>
-          ))}
-      </tbody>
-    </Table>
+    <>
+      <div className="row">
+        <div className="col-12 d-inline d-flex justify-content-end">
+          <Link to={"/addherd"}>
+            <button className="btn btn-warning rounded-pill m-2  ">
+              Nuevo Lote
+            </button>
+          </Link>
+        </div>
+      </div>
+      <Table bordered hover>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Category</th>
+            <th>Original Price</th>
+            <th>Breed</th>
+            <th>Quantity</th>
+            <th>classType</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {listHerds &&
+            listHerds.map((herd) => (
+              <tr key={herd.id}>
+                <td>{herd.id}</td>
+                <td>{herd.category}</td>
+                <td>${herd.originalPrice}</td>
+                <td>{herd.breed}</td>
+                <td>{herd.quantity}</td>
+                <td>{herd.classType}</td>
+                <td className="d-flex justify-content-between">
+                  <AiOutlineEdit
+                    color="orange"
+                    cursor="pointer"
+                    onClick={handleEdit}
+                  />
+                  <BsTrash3Fill
+                    color="red"
+                    cursor="pointer"
+                    onClick={() => handleRemove(herd.id)}
+                  />
+                </td>
+              </tr>
+            ))}
+        </tbody>
+      </Table>
+    </>
   );
 };
 
