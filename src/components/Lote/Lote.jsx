@@ -6,9 +6,10 @@ import axios from "axios";
 import { BsTrash3Fill } from "react-icons/bs";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Lote = () => {
+  const navigate = useNavigate();
   const notifySuccess = (message) =>
     toast.success(message, {
       position: "bottom-right",
@@ -31,8 +32,21 @@ const Lote = () => {
     });
 
   const [listHerds, setListHerds] = useState();
+  const handleEdit = (herd) => {
+    Swal.fire({
+      title: "Do you Want to Edit  this Lote?",
+      showDenyButton: true,
+      confirmButtonText: "Yes",
+      denyButtonText: "No",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        navigate("/edithead", { state: { herd } });
+      } else if (result.isDenied) {
+        notifyCancel();
+      }
+    });
+  };
   const handleRemove = (herd) => {
-    console.log("parameter: ", herd);
     Swal.fire({
       title: "Do you Want to Delete this Lote?",
       showDenyButton: true,
@@ -101,9 +115,12 @@ const Lote = () => {
                 <td>{herd.quantity}</td>
                 <td>{herd.classType}</td>
                 <td className="d-flex justify-content-between">
-                  <Link state={herd} to={"/edithead"}>
-                    <AiOutlineEdit color="orange" cursor="pointer" />
-                  </Link>
+                  <AiOutlineEdit
+                    color="orange"
+                    cursor="pointer"
+                    onClick={() => handleEdit(herd)}
+                  />
+
                   <BsTrash3Fill
                     color="red"
                     cursor="pointer"

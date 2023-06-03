@@ -8,8 +8,8 @@ import Rating from "@mui/material/Rating";
 import { styled } from "@mui/material/styles";
 
 export default function EditHeard() {
-  const stateLocation = useLocation();
-  const { state } = stateLocation;
+  const location = useLocation();
+  const { state } = location;
   const categories = [
     "Terneros",
     "Terneras",
@@ -118,7 +118,7 @@ export default function EditHeard() {
               <Form.Control
                 type="number"
                 placeholder="Nombre"
-                value={state.quantity}
+                value={state.herd.quantity}
               />
             </FloatingLabel>
           </Col>
@@ -207,7 +207,7 @@ export default function EditHeard() {
           <Form.Control
             type="textarea"
             placeholder="Descripción"
-            value={state.description}
+            value={state.herd.description}
           />
         </FloatingLabel>
 
@@ -221,7 +221,7 @@ export default function EditHeard() {
               <Form.Control
                 type="number"
                 placeholder="Teléfono"
-                value={state.inspection}
+                value={state.herd.inspection}
               />
             </FloatingLabel>
           </Col>
