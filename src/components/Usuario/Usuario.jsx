@@ -7,12 +7,8 @@ import axios from "axios";
 
 const Usuario = () => {
   const [listUsers, setListUsers] = useState();
-  const handleEdit = () => {
-    console.log("edit..");
-  };
-  const handleRemove = () => {
-    console.log("remove..");
-  };
+  const handleEdit = () => {};
+  const handleRemove = () => {};
   useEffect(() => {
     const getUsers = async () => {
       const response = await axios({

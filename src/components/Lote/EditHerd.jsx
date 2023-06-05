@@ -10,28 +10,8 @@ import { styled } from "@mui/material/styles";
 export default function EditHeard() {
   const location = useLocation();
   const { state } = location;
-  const categories = [
-    "Terneros",
-    "Terneras",
-    "Novillos",
-    "Vaquillonas",
-    "Vaquillonas preñadas",
-    "Vaquillonas próximas",
-    "Vaquillonas en producción",
-    "Vacas",
-    "Vacas preñadas",
-    "Vacas próximas",
-    "Vacas en producción",
-    "Vacas de invernada",
-    "Toro",
-    "Caballo",
-    "Yegua",
-    "Corederos/as",
-    "Borregos/as",
-    "Ovejas",
-    "Carneros",
-  ];
 
+  const [category_herd, setcategory_herd] = useState();
   const [breeds, setBreeds] = useState();
   const [auctioneers, setAuctioneers] = useState([]);
   const [users, setUsers] = useState([]);
@@ -57,6 +37,18 @@ export default function EditHeard() {
     getUsers();
   }, []);
 
+  // Llamada para traer category_herds
+  useEffect(() => {
+    const getCategories = async () => {
+      const response = await axios({
+        method: "GET",
+        url: `http://localhost:8000/category`,
+      });
+      setcategory_herd(response.data);
+    };
+
+    getCategories();
+  }, []);
   //Traer los Breed
 
   useEffect(() => {
@@ -78,7 +70,7 @@ export default function EditHeard() {
       color: "#bfc8c9",
     },
   });
-  console.log("breed: ", state.herd.breedId);
+
   return (
     <>
       <Link to="/">Home</Link>
@@ -147,10 +139,14 @@ export default function EditHeard() {
               label="Categoría"
               className="mb-3"
             >
-              <Form.Select aria-label="Default select example">
-                {categories.map((category) => {
-                  return <option>{category}</option>;
-                })}
+              <Form.Select
+                aria-label="Default select example"
+                value={state.herd.categoryHerdId}
+              >
+                {category_herd &&
+                  category_herd.map((category) => {
+                    return <option value={category.id}>{category.name}</option>;
+                  })}
               </Form.Select>
             </FloatingLabel>
           </Col>
