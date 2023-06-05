@@ -77,8 +77,10 @@ export default function EditHeard() {
               label="Vendedor"
               className="mb-3"
             >
-              <Form.Select aria-label="Default select example">
-                <option></option>
+              <Form.Select
+                aria-label="Default select example"
+                value={state.herd.auctioneer}
+              >
                 {users.map((user) => {
                   return (
                     <option>
@@ -95,7 +97,10 @@ export default function EditHeard() {
               label="Escritorio"
               className="mb-3"
             >
-              <Form.Select aria-label="Default select example">
+              <Form.Select
+                aria-label="Default select example"
+                value={state.herd.auctioneerId}
+              >
                 <option></option>
                 {auctioneers.map((auctioneer) => {
                   return (
