@@ -31,7 +31,8 @@ export default function EditHeard() {
     "Ovejas",
     "Carneros",
   ];
-  const breeds = ["Holando", "Angus", "Jersey", "Hereford", "Cruza", "Kiwi"];
+
+  const [breeds, setBreeds] = useState();
   const [auctioneers, setAuctioneers] = useState([]);
   const [users, setUsers] = useState([]);
 
@@ -56,6 +57,19 @@ export default function EditHeard() {
     getUsers();
   }, []);
 
+  //Traer los Breed
+
+  useEffect(() => {
+    const getBreeds = async () => {
+      const response = await axios({
+        method: "GET",
+        url: `http://localhost:8000/breed`,
+      });
+      setBreeds(response.data);
+    };
+    getBreeds();
+  }, []);
+
   const StyledRating = styled(Rating)({
     "& .MuiRating-iconFilled": {
       color: "#0e4056",
@@ -64,7 +78,7 @@ export default function EditHeard() {
       color: "#bfc8c9",
     },
   });
-
+  console.log("breed: ", state.herd.breedId);
   return (
     <>
       <Link to="/">Home</Link>
@@ -134,7 +148,6 @@ export default function EditHeard() {
               className="mb-3"
             >
               <Form.Select aria-label="Default select example">
-                <option></option>
                 {categories.map((category) => {
                   return <option>{category}</option>;
                 })}
@@ -147,11 +160,14 @@ export default function EditHeard() {
               label="Raza"
               className="mb-3"
             >
-              <Form.Select aria-label="Default select example">
-                <option></option>
-                {breeds.map((breed) => {
-                  return <option>{breed}</option>;
-                })}
+              <Form.Select
+                aria-label="Default select example"
+                value={state.herd.breedId}
+              >
+                {breeds &&
+                  breeds.map((breed) => {
+                    return <option value={breed.id}>{breed.name}</option>;
+                  })}
               </Form.Select>
             </FloatingLabel>
           </Col>
