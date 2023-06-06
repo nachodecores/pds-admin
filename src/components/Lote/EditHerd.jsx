@@ -1,5 +1,4 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Form, Button, FloatingLabel, Col, Row } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -8,24 +7,14 @@ import SquareRoundedIcon from "@mui/icons-material/SquareRounded";
 import Rating from "@mui/material/Rating";
 import { styled } from "@mui/material/styles";
 
-export default function AddHerd() {
-  const [selectedVendedor, setSelectedVendedor] = useState();
-  const [selectedEscritorio, setSelectedEscritorio] = useState();
-  const [selectedCantidad, setSelectedCantidad] = useState();
-  const [selectedCategoria, setSelectedCategoria] = useState();
-  const [selectedRaza, setSelectedRaza] = useState();
-  const [selectedPeso, setSelectedPeso] = useState();
-  const [selectedPrecio, setSelectedPrecio] = useState();
-  const [selectedClase, setSelectedClase] = useState();
-  const [selectedDescripcion, setSelectedDescripcion] = useState();
-  const [selectedInspeccion, setSelectedEstado] = useState();
-  const [selectedEstado, setSelectedInspeccion] = useState();
-  const [selectedCertificador, setSelectedCertificador] = useState();
+export default function EditHeard() {
+  const location = useLocation();
+  const { state } = location;
 
+  const [category_herd, setcategory_herd] = useState();
+  const [breeds, setBreeds] = useState();
   const [auctioneers, setAuctioneers] = useState([]);
   const [users, setUsers] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [breed, setBreed] = useState([]);
 
   // Llamada para traer escritorios y users
   useEffect(() => {
@@ -48,29 +37,31 @@ export default function AddHerd() {
     getUsers();
   }, []);
 
-  // Llamada para traer categorias
+  // Llamada para traer category_herds
   useEffect(() => {
-    const getCategorias = async () => {
+    const getCategories = async () => {
       const response = await axios({
         method: "GET",
         url: `http://localhost:8000/category`,
       });
-      setCategories(response.data);
+      setcategory_herd(response.data);
     };
-    getCategorias();
+
+    getCategories();
   }, []);
-  // Llamada para traer categorias
+  //Traer los Breed
+
   useEffect(() => {
-    const getBreed = async () => {
+    const getBreeds = async () => {
       const response = await axios({
         method: "GET",
         url: `http://localhost:8000/breed`,
       });
-      setBreed(response.data);
+      setBreeds(response.data);
     };
-    getBreed();
+    getBreeds();
   }, []);
-
+  console.log("User: ", state.herd.userId);
   const StyledRating = styled(Rating)({
     "& .MuiRating-iconFilled": {
       color: "#0e4056",
@@ -80,42 +71,11 @@ export default function AddHerd() {
     },
   });
 
-  const handleNewLote = async (event) => {
-    event.preventDefault();
-    const formData = new FormData();
-    formData.append("vendedor", selectedVendedor);
-    formData.append("escritorio", selectedEscritorio);
-    formData.append("cantidad", selectedCantidad);
-    formData.append("categoria", selectedCategoria);
-    formData.append("raza", selectedRaza);
-    formData.append("peso", selectedPeso);
-    formData.append("precio", selectedPrecio);
-    formData.append("clase", selectedClase);
-    formData.append("estado", selectedEstado);
-    formData.append("descripcion", selectedDescripcion);
-    formData.append("inspeccion", selectedInspeccion);
-    formData.append("certificador", selectedCertificador);
-
-    const response = await axios({
-      url: "http://localhost:8000/catalogue",
-      method: "POST",
-      data: formData,
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-    console.log(response.data);
-    /* response.data.message
-      ? notifySuccess(response.data.message)
-      : notifyError(response.data.error);
-
-    navigate(-1); */
-  };
-
   return (
     <>
-      <h1>Registrar lote</h1>
-      <Form className="container" onSubmit={handleNewLote}>
+      <Link to="/">Home</Link>
+      <h1>Editar Lote</h1>
+      <Form className="container">
         <Row>
           <Col>
             <FloatingLabel
@@ -125,7 +85,7 @@ export default function AddHerd() {
             >
               <Form.Select
                 aria-label="Default select example"
-                onChange={(event) => setSelectedVendedor(event.target.value)}
+                value={state.herd.userId}
               >
                 {users.map((user) => {
                   return (
@@ -145,8 +105,9 @@ export default function AddHerd() {
             >
               <Form.Select
                 aria-label="Default select example"
-                onChange={(event) => setSelectedEscritorio(event.target.value)}
+                value={state.herd.auctioneerId}
               >
+                <option></option>
                 {auctioneers.map((auctioneer) => {
                   return (
                     <option key={auctioneer.id} value={auctioneer.id}>
@@ -168,7 +129,7 @@ export default function AddHerd() {
               <Form.Control
                 type="number"
                 placeholder="Nombre"
-                onChange={(event) => setSelectedCantidad(event.target.value)}
+                value={state.herd.quantity}
               />
             </FloatingLabel>
           </Col>
@@ -180,10 +141,10 @@ export default function AddHerd() {
             >
               <Form.Select
                 aria-label="Default select example"
-                onChange={(event) => setSelectedCategoria(event.target.value)}
+                value={state.herd.categoryHerdId}
               >
-                {categories &&
-                  categories.map((category) => {
+                {category_herd &&
+                  category_herd.map((category) => {
                     return <option value={category.id}>{category.name}</option>;
                   })}
               </Form.Select>
@@ -197,10 +158,10 @@ export default function AddHerd() {
             >
               <Form.Select
                 aria-label="Default select example"
-                onChange={(event) => setSelectedRaza(event.target.value)}
+                value={state.herd.breedId}
               >
-                {breed &&
-                  breed.map((breed) => {
+                {breeds &&
+                  breeds.map((breed) => {
                     return <option value={breed.id}>{breed.name}</option>;
                   })}
               </Form.Select>
@@ -217,7 +178,7 @@ export default function AddHerd() {
               <Form.Control
                 type="text"
                 placeholder="Nombre"
-                onChange={(event) => setSelectedPeso(event.target.value)}
+                value={state.herd.weight}
               />
             </FloatingLabel>
           </Col>
@@ -230,7 +191,7 @@ export default function AddHerd() {
               <Form.Control
                 type="text"
                 placeholder="Apellido"
-                onChange={(event) => setSelectedPrecio(event.target.value)}
+                value={state.herd.originalPrice}
               />
             </FloatingLabel>
           </Col>
@@ -246,7 +207,7 @@ export default function AddHerd() {
                 precision={1}
                 icon={<SquareRoundedIcon fontSize="inherit" />}
                 emptyIcon={<CropSquareRoundedIcon fontSize="inherit" />}
-                onChange={(event) => setSelectedClase(event.target.value)}
+                value={state.herd.classType}
               />
             </div>
           </Col>
@@ -259,7 +220,7 @@ export default function AddHerd() {
                 precision={1}
                 icon={<SquareRoundedIcon fontSize="inherit" />}
                 emptyIcon={<CropSquareRoundedIcon fontSize="inherit" />}
-                onChange={(event) => setSelectedEstado(event.target.value)}
+                value={state.herd.state}
               />
             </div>
           </Col>
@@ -273,7 +234,7 @@ export default function AddHerd() {
           <Form.Control
             type="textarea"
             placeholder="Descripción"
-            onChange={(event) => setSelectedDescripcion(event.target.value)}
+            value={state.herd.description}
           />
         </FloatingLabel>
 
@@ -287,7 +248,7 @@ export default function AddHerd() {
               <Form.Control
                 type="number"
                 placeholder="Teléfono"
-                onChange={(event) => setSelectedInspeccion(event.target.value)}
+                value={state.herd.inspection}
               />
             </FloatingLabel>
           </Col>
@@ -298,18 +259,16 @@ export default function AddHerd() {
               className="mb-3"
             >
               <Form.Control
-                type="number"
+                type="text"
                 placeholder="Teléfono"
-                onChange={(event) =>
-                  setSelectedCertificador(event.target.value)
-                }
+                value={state.herd.cerifier}
               />
             </FloatingLabel>
           </Col>
         </Row>
 
         <FloatingLabel controlId="floatingInput" label="Video" className="mb-3">
-          <Form.Control type="file" />
+          <Form.Control type="number" placeholder="Teléfono" />
         </FloatingLabel>
 
         <Button variant="primary" type="submit" className="mb-3">

@@ -6,8 +6,10 @@ import axios from "axios";
 import { BsTrash3Fill } from "react-icons/bs";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
 
 const Lote = () => {
+  const navigate = useNavigate();
   const notifySuccess = (message) =>
     toast.success(message, {
       position: "bottom-right",
@@ -29,10 +31,22 @@ const Lote = () => {
       },
     });
 
-  const [listHerds, setListHerds] = useState([]);
-  const handleEdit = () => {};
+  const [listHerds, setListHerds] = useState();
+  const handleEdit = (herd) => {
+    Swal.fire({
+      title: "Do you Want to Edit  this Lote?",
+      showDenyButton: true,
+      confirmButtonText: "Yes",
+      denyButtonText: "No",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        navigate("/edithead", { state: { herd } });
+      } else if (result.isDenied) {
+        notifyCancel();
+      }
+    });
+  };
   const handleRemove = (herd) => {
-    console.log("parameter: ", herd);
     Swal.fire({
       title: "Do you Want to Delete this Lote?",
       showDenyButton: true,
@@ -70,54 +84,56 @@ const Lote = () => {
   }, []);
 
   return (
-    <Table bordered hover>
-      <thead>
-        <tr>
-          <th>id</th>
-          <th>Vendedor</th>
-          <th>Cantidad</th>
-          <th>Categoría</th>
-          <th>Raza</th>
-          <th>Clase</th>
-          <th>Estado</th>
-          <th>P.Base</th>
-          <th>P.Preof</th>
-          <th>P.Venta</th>
-          <th>Status</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        {listHerds &&
-          listHerds.map((herd) => (
-            <tr key={herd.id}>
-              <td>{herd.id}</td>
-              <td>{herd.userId}</td>
-              <td>{herd.quantity}</td>
-              <td>{herd.category}</td>
-              <td>{herd.breed}</td>
-              <td>{herd.classType}</td>
-              <td>{herd.state}</td>
-              <td>{herd.originalPrice}</td>
-              <td>{herd.preBidPrice}</td>
-              <td>{herd.finalPrice}</td>
-              <td>{herd.sellStatus}</td>
-              <td className="d-flex justify-content-between">
-                <AiOutlineEdit
-                  color="orange"
-                  cursor="pointer"
-                  onClick={handleEdit}
-                />
-                <BsTrash3Fill
-                  color="red"
-                  cursor="pointer"
-                  onClick={() => handleRemove(herd.id)}
-                />
-              </td>
-            </tr>
-          ))}
-      </tbody>
-    </Table>
+    <>
+      <div className="row">
+        <div className="col-12 d-inline d-flex justify-content-end">
+          <Link to={"/addherd"}>
+            <button className="btn btn-warning rounded-pill m-2  ">
+              Nuevo Lote
+            </button>
+          </Link>
+        </div>
+      </div>
+      <Table bordered hover>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Category</th>
+            <th>Original Price</th>
+            <th>Breed</th>
+            <th>Quantity</th>
+            <th>classType</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {listHerds &&
+            listHerds.map((herd) => (
+              <tr key={herd.id}>
+                <td>{herd.id}</td>
+                <td>{herd.category}</td>
+                <td>${herd.originalPrice}</td>
+                <td>{herd.breed}</td>
+                <td>{herd.quantity}</td>
+                <td>{herd.classType}</td>
+                <td className="d-flex justify-content-between">
+                  <AiOutlineEdit
+                    color="orange"
+                    cursor="pointer"
+                    onClick={() => handleEdit(herd)}
+                  />
+
+                  <BsTrash3Fill
+                    color="red"
+                    cursor="pointer"
+                    onClick={() => handleRemove(herd.id)}
+                  />
+                </td>
+              </tr>
+            ))}
+        </tbody>
+      </Table>
+    </>
   );
 };
 
