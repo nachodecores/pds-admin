@@ -61,7 +61,7 @@ export default function EditHeard() {
     };
     getBreeds();
   }, []);
-
+  console.log("User: ", state.herd.userId);
   const StyledRating = styled(Rating)({
     "& .MuiRating-iconFilled": {
       color: "#0e4056",
@@ -85,11 +85,11 @@ export default function EditHeard() {
             >
               <Form.Select
                 aria-label="Default select example"
-                value={state.herd.auctioneer}
+                value={state.herd.userId}
               >
                 {users.map((user) => {
                   return (
-                    <option>
+                    <option value={user.id}>
                       {user.lastname}, {user.firstname}
                     </option>
                   );
@@ -175,7 +175,11 @@ export default function EditHeard() {
               label="Peso estimado"
               className="mb-3"
             >
-              <Form.Control type="text" placeholder="Nombre" />
+              <Form.Control
+                type="text"
+                placeholder="Nombre"
+                value={state.herd.weight}
+              />
             </FloatingLabel>
           </Col>
           <Col>
@@ -184,7 +188,11 @@ export default function EditHeard() {
               label="Precio base"
               className="mb-3"
             >
-              <Form.Control type="text" placeholder="Apellido" />
+              <Form.Control
+                type="text"
+                placeholder="Apellido"
+                value={state.herd.originalPrice}
+              />
             </FloatingLabel>
           </Col>
         </Row>
