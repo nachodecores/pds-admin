@@ -258,7 +258,11 @@ export default function EditHeard() {
               label="Certificador"
               className="mb-3"
             >
-              <Form.Control type="number" placeholder="Teléfono" />
+              <Form.Control
+                type="text"
+                placeholder="Teléfono"
+                value={state.herd.cerifier}
+              />
             </FloatingLabel>
           </Col>
         </Row>
