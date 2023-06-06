@@ -9,30 +9,16 @@ import Rating from "@mui/material/Rating";
 import { styled } from "@mui/material/styles";
 
 export default function AddHerd() {
-  const categories = [
-    "Terneros",
-    "Terneras",
-    "Novillos",
-    "Vaquillonas",
-    "Vaquillonas preñadas",
-    "Vaquillonas próximas",
-    "Vaquillonas en producción",
-    "Vacas",
-    "Vacas preñadas",
-    "Vacas próximas",
-    "Vacas en producción",
-    "Vacas de invernada",
-    "Toro",
-    "Caballo",
-    "Yegua",
-    "Corederos/as",
-    "Borregos/as",
-    "Ovejas",
-    "Carneros",
-  ];
-  const breeds = ["Holando", "Angus", "Jersey", "Hereford", "Cruza", "Kiwi"];
+  const [selectedVendedor, setSelectedVendedor] = useState();
+  const [selectedEscritorio, setSelectedEscritorio] = useState();
+  const [selectedCantidad, setSelectedCantidad] = useState();
+  const [selectedCategoria, setSelectedCategoria] = useState();
+  const [selectedRaza, setSelectedRaza] = useState();
+
   const [auctioneers, setAuctioneers] = useState([]);
   const [users, setUsers] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [breed, setBreed] = useState([]);
 
   // Llamada para traer escritorios y users
   useEffect(() => {
@@ -55,6 +41,29 @@ export default function AddHerd() {
     getUsers();
   }, []);
 
+  // Llamada para traer categorias
+  useEffect(() => {
+    const getCategorias = async () => {
+      const response = await axios({
+        method: "GET",
+        url: `http://localhost:8000/category`,
+      });
+      setCategories(response.data);
+    };
+    getCategorias();
+  }, []);
+  // Llamada para traer categorias
+  useEffect(() => {
+    const getBreed = async () => {
+      const response = await axios({
+        method: "GET",
+        url: `http://localhost:8000/breed`,
+      });
+      setBreed(response.data);
+    };
+    getBreed();
+  }, []);
+
   const StyledRating = styled(Rating)({
     "& .MuiRating-iconFilled": {
       color: "#0e4056",
@@ -63,7 +72,7 @@ export default function AddHerd() {
       color: "#bfc8c9",
     },
   });
-
+  console.log("Raza:", selectedRaza);
   return (
     <>
       <Link to="/">Home</Link>
@@ -76,11 +85,13 @@ export default function AddHerd() {
               label="Vendedor"
               className="mb-3"
             >
-              <Form.Select aria-label="Default select example">
-                <option></option>
+              <Form.Select
+                aria-label="Default select example"
+                onChange={(event) => setSelectedVendedor(event.target.value)}
+              >
                 {users.map((user) => {
                   return (
-                    <option>
+                    <option value={user.id}>
                       {user.lastname}, {user.firstname}
                     </option>
                   );
@@ -94,8 +105,10 @@ export default function AddHerd() {
               label="Escritorio"
               className="mb-3"
             >
-              <Form.Select aria-label="Default select example">
-                <option></option>
+              <Form.Select
+                aria-label="Default select example"
+                onChange={(event) => setSelectedEscritorio(event.target.value)}
+              >
                 {auctioneers.map((auctioneer) => {
                   return (
                     <option key={auctioneer.id} value={auctioneer.id}>
@@ -114,7 +127,11 @@ export default function AddHerd() {
               label="Cantidad"
               className="mb-3"
             >
-              <Form.Control type="number" placeholder="Nombre" />
+              <Form.Control
+                type="number"
+                placeholder="Nombre"
+                onChange={(event) => setSelectedCantidad(event.target.value)}
+              />
             </FloatingLabel>
           </Col>
           <Col>
@@ -123,11 +140,14 @@ export default function AddHerd() {
               label="Categoría"
               className="mb-3"
             >
-              <Form.Select aria-label="Default select example">
-                <option></option>
-                {categories.map((category) => {
-                  return <option>{category}</option>;
-                })}
+              <Form.Select
+                aria-label="Default select example"
+                onChange={(event) => setSelectedCategoria(event.target.value)}
+              >
+                {categories &&
+                  categories.map((category) => {
+                    return <option value={category.id}>{category.name}</option>;
+                  })}
               </Form.Select>
             </FloatingLabel>
           </Col>
@@ -137,11 +157,14 @@ export default function AddHerd() {
               label="Raza"
               className="mb-3"
             >
-              <Form.Select aria-label="Default select example">
-                <option></option>
-                {breeds.map((breed) => {
-                  return <option>{breed}</option>;
-                })}
+              <Form.Select
+                aria-label="Default select example"
+                onChange={(event) => setSelectedRaza(event.target.value)}
+              >
+                {breed &&
+                  breed.map((breed) => {
+                    return <option value={breed.id}>{breed.name}</option>;
+                  })}
               </Form.Select>
             </FloatingLabel>
           </Col>
