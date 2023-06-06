@@ -207,6 +207,7 @@ export default function EditHeard() {
                 precision={1}
                 icon={<SquareRoundedIcon fontSize="inherit" />}
                 emptyIcon={<CropSquareRoundedIcon fontSize="inherit" />}
+                value={state.herd.classType}
               />
             </div>
           </Col>
