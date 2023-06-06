@@ -14,6 +14,13 @@ export default function AddHerd() {
   const [selectedCantidad, setSelectedCantidad] = useState();
   const [selectedCategoria, setSelectedCategoria] = useState();
   const [selectedRaza, setSelectedRaza] = useState();
+  const [selectedPeso, setSelectedPeso] = useState();
+  const [selectedPrecio, setSelectedPrecio] = useState();
+  const [selectedClase, setSelectedClase] = useState();
+  const [selectedDescripcion, setSelectedDescripcion] = useState();
+  const [selectedInspeccion, setSelectedEstado] = useState();
+  const [selectedEstado, setSelectedInspeccion] = useState();
+  const [selectedCertificador, setSelectedCertificador] = useState();
 
   const [auctioneers, setAuctioneers] = useState([]);
   const [users, setUsers] = useState([]);
@@ -72,7 +79,7 @@ export default function AddHerd() {
       color: "#bfc8c9",
     },
   });
-  console.log("Raza:", selectedRaza);
+
   return (
     <>
       <Link to="/">Home</Link>
@@ -176,7 +183,11 @@ export default function AddHerd() {
               label="Peso estimado"
               className="mb-3"
             >
-              <Form.Control type="text" placeholder="Nombre" />
+              <Form.Control
+                type="text"
+                placeholder="Nombre"
+                onChange={(event) => setSelectedPeso(event.target.value)}
+              />
             </FloatingLabel>
           </Col>
           <Col>
@@ -185,7 +196,11 @@ export default function AddHerd() {
               label="Precio base"
               className="mb-3"
             >
-              <Form.Control type="text" placeholder="Apellido" />
+              <Form.Control
+                type="text"
+                placeholder="Apellido"
+                onChange={(event) => setSelectedPrecio(event.target.value)}
+              />
             </FloatingLabel>
           </Col>
         </Row>
@@ -200,6 +215,7 @@ export default function AddHerd() {
                 precision={1}
                 icon={<SquareRoundedIcon fontSize="inherit" />}
                 emptyIcon={<CropSquareRoundedIcon fontSize="inherit" />}
+                onChange={(event) => setSelectedClase(event.target.value)}
               />
             </div>
           </Col>
@@ -212,6 +228,7 @@ export default function AddHerd() {
                 precision={1}
                 icon={<SquareRoundedIcon fontSize="inherit" />}
                 emptyIcon={<CropSquareRoundedIcon fontSize="inherit" />}
+                onChange={(event) => setSelectedEstado(event.target.value)}
               />
             </div>
           </Col>
@@ -222,7 +239,11 @@ export default function AddHerd() {
           label="Descripción"
           className="mb-3"
         >
-          <Form.Control type="textarea" placeholder="Descripción" />
+          <Form.Control
+            type="textarea"
+            placeholder="Descripción"
+            onChange={(event) => setSelectedDescripcion(event.target.value)}
+          />
         </FloatingLabel>
 
         <Row>
@@ -232,7 +253,11 @@ export default function AddHerd() {
               label="Inspección"
               className="mb-3"
             >
-              <Form.Control type="number" placeholder="Teléfono" />
+              <Form.Control
+                type="number"
+                placeholder="Teléfono"
+                onChange={(event) => setSelectedInspeccion(event.target.value)}
+              />
             </FloatingLabel>
           </Col>
           <Col>
@@ -241,13 +266,19 @@ export default function AddHerd() {
               label="Certificador"
               className="mb-3"
             >
-              <Form.Control type="number" placeholder="Teléfono" />
+              <Form.Control
+                type="number"
+                placeholder="Teléfono"
+                onChange={(event) =>
+                  setSelectedCertificador(event.target.value)
+                }
+              />
             </FloatingLabel>
           </Col>
         </Row>
 
         <FloatingLabel controlId="floatingInput" label="Video" className="mb-3">
-          <Form.Control type="number" placeholder="Teléfono" />
+          <Form.Control type="file" />
         </FloatingLabel>
 
         <Button variant="primary" type="submit" className="mb-3">
