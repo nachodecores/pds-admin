@@ -29,7 +29,7 @@ const Lote = () => {
       },
     });
 
-  const [listHerds, setListHerds] = useState();
+  const [listHerds, setListHerds] = useState([]);
   const handleEdit = () => {};
   const handleRemove = (herd) => {
     console.log("parameter: ", herd);
@@ -64,20 +64,27 @@ const Lote = () => {
         },
       });
       setListHerds(response.data);
+      console.log(response.data);
     };
     getHerds();
   }, []);
+
   return (
     <Table bordered hover>
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Category</th>
-          <th>Original Price</th>
-          <th>Breed</th>
-          <th>Quantity</th>
-          <th>classType</th>
-          <th>Actions</th>
+          <th>id</th>
+          <th>Vendedor</th>
+          <th>Cantidad</th>
+          <th>Categoría</th>
+          <th>Raza</th>
+          <th>Clase</th>
+          <th>Estado</th>
+          <th>P.Base</th>
+          <th>P.Preof</th>
+          <th>P.Venta</th>
+          <th>Status</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -85,11 +92,16 @@ const Lote = () => {
           listHerds.map((herd) => (
             <tr key={herd.id}>
               <td>{herd.id}</td>
-              <td>{herd.category}</td>
-              <td>${herd.originalPrice}</td>
-              <td>{herd.breed}</td>
+              <td>{herd.userId}</td>
               <td>{herd.quantity}</td>
+              <td>{herd.category}</td>
+              <td>{herd.breed}</td>
               <td>{herd.classType}</td>
+              <td>{herd.state}</td>
+              <td>{herd.originalPrice}</td>
+              <td>{herd.preBidPrice}</td>
+              <td>{herd.finalPrice}</td>
+              <td>{herd.sellStatus}</td>
               <td className="d-flex justify-content-between">
                 <AiOutlineEdit
                   color="orange"
