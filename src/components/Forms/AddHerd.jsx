@@ -80,11 +80,43 @@ export default function AddHerd() {
     },
   });
 
+  const handleNewLote = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("vendedor", selectedVendedor);
+    formData.append("escritorio", selectedEscritorio);
+    formData.append("cantidad", selectedCantidad);
+    formData.append("categoria", selectedCategoria);
+    formData.append("raza", selectedRaza);
+    formData.append("peso", selectedPeso);
+    formData.append("precio", selectedPrecio);
+    formData.append("clase", selectedClase);
+    formData.append("estado", selectedEstado);
+    formData.append("descripcion", selectedDescripcion);
+    formData.append("inspeccion", selectedInspeccion);
+    formData.append("certificador", selectedCertificador);
+
+    const response = await axios({
+      url: "http://localhost:8000/catalogue",
+      method: "POST",
+      data: formData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    console.log(response.data);
+    /* response.data.message
+      ? notifySuccess(response.data.message)
+      : notifyError(response.data.error);
+
+    navigate(-1); */
+  };
+
   return (
     <>
       <Link to="/">Home</Link>
       <h1>Registrar lote</h1>
-      <Form className="container">
+      <Form className="container" onSubmit={handleNewLote}>
         <Row>
           <Col>
             <FloatingLabel
