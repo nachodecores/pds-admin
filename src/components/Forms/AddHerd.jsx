@@ -104,7 +104,8 @@ export default function AddHerd() {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log(response.data);
+
+    console.log("Respuesta: ", response.data);
     /* response.data.message
       ? notifySuccess(response.data.message)
       : notifyError(response.data.error);
@@ -128,6 +129,7 @@ export default function AddHerd() {
                 aria-label="Default select example"
                 onChange={(event) => setSelectedVendedor(event.target.value)}
               >
+                <option value="">Selecciona Vendedor..</option>
                 {users.map((user) => {
                   return (
                     <option value={user.id}>
@@ -148,6 +150,7 @@ export default function AddHerd() {
                 aria-label="Default select example"
                 onChange={(event) => setSelectedEscritorio(event.target.value)}
               >
+                <option value="">Selecciona Escritorio..</option>
                 {auctioneers.map((auctioneer) => {
                   return (
                     <option key={auctioneer.id} value={auctioneer.id}>
@@ -183,6 +186,7 @@ export default function AddHerd() {
                 aria-label="Default select example"
                 onChange={(event) => setSelectedCategoria(event.target.value)}
               >
+                <option value="">Selecciona Categoria..</option>
                 {categories &&
                   categories.map((category) => {
                     return <option value={category.id}>{category.name}</option>;
@@ -200,6 +204,7 @@ export default function AddHerd() {
                 aria-label="Default select example"
                 onChange={(event) => setSelectedRaza(event.target.value)}
               >
+                <option value="">Selecciona Raza..</option>
                 {breed &&
                   breed.map((breed) => {
                     return <option value={breed.id}>{breed.name}</option>;
