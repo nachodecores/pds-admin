@@ -115,7 +115,6 @@ export default function AddHerd() {
 
   return (
     <>
-      <Link to="/">Home</Link>
       <h1>Registrar lote</h1>
       <Form className="container" onSubmit={handleNewLote}>
         <Row>

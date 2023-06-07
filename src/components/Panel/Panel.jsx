@@ -20,19 +20,19 @@ const Panel = () => {
           <li>
             <Link to={"/lote"}>
               <i className="bx bxs-cog"></i>
-              <span className="text">Lote</span>
+              <span className="text">Lotes</span>
             </Link>
           </li>
           <li>
             <Link to={"/usuario"}>
               <i className="bx bxs-cog"></i>
-              <span className="text">Usuario</span>
+              <span className="text">Usuarios</span>
             </Link>
           </li>
           <li>
             <Link to={"/remate"}>
               <i className="bx bxs-cog"></i>
-              <span className="text">Remate</span>
+              <span className="text">Remates</span>
             </Link>
           </li>
           <li>

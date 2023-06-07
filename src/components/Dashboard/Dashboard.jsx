@@ -46,39 +46,25 @@ const Dashboard = () => {
                 <th>Cantidad</th>
                 <th>Categoría</th>
                 <th>Raza</th>
+                <th>P.Base</th>
+                <th>P.Venta</th>
                 <th>Status</th>
+                <th>Escritorio</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>
-                  <img src="img/people.png" alt="" />
-                  <p>John Doe</p>
-                </td>
-                <td>01-10-2021</td>
+                <td>11</td>
+                <td>John Doe</td>
+                <td>43</td>
+                <td>Vaquillonas</td>
+                <td>Holando</td>
+                <td>1.85</td>
+                <td>2.15</td>
                 <td>
                   <span className="status completed">Vendido</span>
                 </td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="img/people.png" alt="" />
-                  <p>John Doe</p>
-                </td>
-                <td>01-10-2021</td>
-                <td>
-                  <span className="status pending">Pending</span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="img/people.png" alt="" />
-                  <p>John Doe</p>
-                </td>
-                <td>01-10-2021</td>
-                <td>
-                  <span className="status process">Process</span>
-                </td>
+                <td>JC Ramón</td>
               </tr>
             </tbody>
           </table>

@@ -78,9 +78,11 @@ const Lote = () => {
         },
       });
       setListHerds(response.data);
+      console.log(response.data);
     };
     getHerds();
   }, []);
+
   return (
     <>
       <div className="row">
