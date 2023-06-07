@@ -78,7 +78,6 @@ const Lote = () => {
         },
       });
       setListHerds(response.data);
-      console.log(response.data);
     };
     getHerds();
   }, []);
@@ -111,9 +110,9 @@ const Lote = () => {
             listHerds.map((herd) => (
               <tr key={herd.id}>
                 <td>{herd.id}</td>
-                <td>{herd.category}</td>
+                <td>{herd.categoryHerdId}</td>
                 <td>${herd.originalPrice}</td>
-                <td>{herd.breed}</td>
+                <td>{herd.breedId}</td>
                 <td>{herd.quantity}</td>
                 <td>{herd.classType}</td>
                 <td className="d-flex justify-content-between">

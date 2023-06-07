@@ -6,8 +6,31 @@ import CropSquareRoundedIcon from "@mui/icons-material/CropSquareRounded";
 import SquareRoundedIcon from "@mui/icons-material/SquareRounded";
 import Rating from "@mui/material/Rating";
 import { styled } from "@mui/material/styles";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function AddHerd() {
+  const navigate = useNavigate();
+  const notifySuccess = (message) =>
+    toast.success(message, {
+      position: "bottom-right",
+      duration: 3000,
+      icon: "✅",
+      style: {
+        background: "black",
+        color: "white",
+      },
+    });
+  const notifyError = (message) =>
+    toast.error(message, {
+      position: "bottom-right",
+      duration: 3000,
+      icon: "❌",
+      style: {
+        background: "black",
+        color: "white",
+      },
+    });
   const [selectedVendedor, setSelectedVendedor] = useState();
   const [selectedEscritorio, setSelectedEscritorio] = useState();
   const [selectedCantidad, setSelectedCantidad] = useState();
@@ -104,12 +127,11 @@ export default function AddHerd() {
       },
     });
 
-    console.log("Respuesta: ", response.data);
-    /* response.data.message
+    response.data.message
       ? notifySuccess(response.data.message)
       : notifyError(response.data.error);
 
-    navigate(-1); */
+    navigate(-1);
   };
 
   return (

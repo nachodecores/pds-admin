@@ -61,7 +61,7 @@ export default function EditHeard() {
     };
     getBreeds();
   }, []);
-  console.log("User: ", state.herd.userId);
+
   const StyledRating = styled(Rating)({
     "& .MuiRating-iconFilled": {
       color: "#0e4056",
