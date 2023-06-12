@@ -85,7 +85,8 @@ const Lote = () => {
   return (
     <>
       <div className="row">
-        <div className="col-12 d-inline d-flex justify-content-end">
+        <div className="col-12 d-inline d-flex justify-content-between">
+          <h1>Lotes</h1>
           <Link to={"/addherd"}>
             <button className="btn btn-warning rounded-pill m-2  ">
               Nuevo Lote
@@ -102,6 +103,7 @@ const Lote = () => {
             <th>Breed</th>
             <th>Quantity</th>
             <th>classType</th>
+            <th>Status</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -115,6 +117,9 @@ const Lote = () => {
                 <td>{herd.breedId}</td>
                 <td>{herd.quantity}</td>
                 <td>{herd.classType}</td>
+                <td>
+                  <span className="status completed">Vendido</span>
+                </td>
                 <td className="d-flex justify-content-between">
                   <AiOutlineEdit
                     color="orange"

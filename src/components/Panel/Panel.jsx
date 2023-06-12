@@ -10,9 +10,9 @@ const Panel = () => {
         </Link>
         <ul className="side-menu top">
           <li className="active">
-            <Link href="#">
+            <Link to={"/remate"}>
               <i className="bx bxs-dashboard"></i>
-              <span className="text">Remate #14</span>
+              <span className="text">Remates</span>
             </Link>
           </li>
         </ul>
@@ -27,12 +27,6 @@ const Panel = () => {
             <Link to={"/usuario"}>
               <i className="bx bxs-cog"></i>
               <span className="text">Usuarios</span>
-            </Link>
-          </li>
-          <li>
-            <Link to={"/remate"}>
-              <i className="bx bxs-cog"></i>
-              <span className="text">Remates</span>
             </Link>
           </li>
           <li>

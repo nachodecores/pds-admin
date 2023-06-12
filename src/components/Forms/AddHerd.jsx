@@ -8,6 +8,7 @@ import Rating from "@mui/material/Rating";
 import { styled } from "@mui/material/styles";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import "./AddHerd.css";
 
 export default function AddHerd() {
   const navigate = useNavigate();
@@ -97,9 +98,9 @@ export default function AddHerd() {
     "& .MuiRating-iconFilled": {
       color: "#0e4056",
     },
-    "& .MuiRating-iconHover": {
-      color: "#bfc8c9",
-    },
+    // "& .MuiRating-iconHover": {
+    //   color: "#bfc8c9",
+    // },
   });
 
   const handleNewLote = async (event) => {

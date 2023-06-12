@@ -1,4 +1,13 @@
+import { useState, useEffect } from "react";
+import "../Lote/Lote.css";
+import { Table } from "react-bootstrap";
+import { AiOutlineEdit } from "react-icons/ai";
+import axios from "axios";
+import { BsTrash3Fill } from "react-icons/bs";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 import "../Dashboard/Dashboard.css";
+import { Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   return (
@@ -9,21 +18,21 @@ const Dashboard = () => {
 
       <ul className="box-info">
         <li>
-          <i className="bx bxs-calendar-check"></i>
+          <i className="bx"></i>
           <span className="text">
             <h3>US$ 2.1</h3>
             <p>Terneros raza carne</p>
           </span>
         </li>
         <li>
-          <i className="bx bxs-group"></i>
+          <i className="bx"></i>
           <span className="text">
             <h3>90 %</h3>
             <p>Lotes vendidos</p>
           </span>
         </li>
         <li>
-          <i className="bx bxs-dollar-circle"></i>
+          <i className="bx"></i>
           <span className="text">
             <h3>16</h3>
             <p>Lotes preofertados</p>
@@ -33,10 +42,13 @@ const Dashboard = () => {
 
       <div className="table-data">
         <div className="order">
-          <div className="head">
+          <div className="head d-flex justify-content-between">
             <h3>Catálogo</h3>
-            <i className="bx bx-search"></i>
-            <i className="bx bx-filter"></i>
+            <Link to={"/addherd"}>
+              <button className="btn btn-warning rounded-pill m-2  ">
+                Nuevo Lote
+              </button>
+            </Link>
           </div>
           <table>
             <thead>
