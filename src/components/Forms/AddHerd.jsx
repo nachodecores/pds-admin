@@ -1,13 +1,13 @@
 import React from "react";
-import { Form, Button, FloatingLabel, Col, Row } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Form, Button, FloatingLabel, Col, Row } from "react-bootstrap";
 import CropSquareRoundedIcon from "@mui/icons-material/CropSquareRounded";
+import { useNavigate } from "react-router-dom";
 import SquareRoundedIcon from "@mui/icons-material/SquareRounded";
 import Rating from "@mui/material/Rating";
 import { styled } from "@mui/material/styles";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import "./AddHerd.css";
 
 export default function AddHerd() {
@@ -153,7 +153,7 @@ export default function AddHerd() {
                 <option value="">Selecciona Vendedor..</option>
                 {users.map((user) => {
                   return (
-                    <option value={user.id}>
+                    <option key={user.id} value={user.id}>
                       {user.lastname}, {user.firstname}
                     </option>
                   );
@@ -210,7 +210,11 @@ export default function AddHerd() {
                 <option value="">Selecciona Categoria..</option>
                 {categories &&
                   categories.map((category) => {
-                    return <option value={category.id}>{category.name}</option>;
+                    return (
+                      <option key={category.id} value={category.id}>
+                        {category.name}
+                      </option>
+                    );
                   })}
               </Form.Select>
             </FloatingLabel>
@@ -228,7 +232,11 @@ export default function AddHerd() {
                 <option value="">Selecciona Raza..</option>
                 {breed &&
                   breed.map((breed) => {
-                    return <option value={breed.id}>{breed.name}</option>;
+                    return (
+                      <option key={breed.id} value={breed.id}>
+                        {breed.name}
+                      </option>
+                    );
                   })}
               </Form.Select>
             </FloatingLabel>
@@ -265,7 +273,7 @@ export default function AddHerd() {
 
         <Row>
           <Col>
-            <div className="class-type d-flex">
+            <div className="class-type d-flex" id="clase">
               <p>Clase</p>
               <StyledRating
                 name="customized-color"
@@ -273,12 +281,15 @@ export default function AddHerd() {
                 precision={1}
                 icon={<SquareRoundedIcon fontSize="inherit" />}
                 emptyIcon={<CropSquareRoundedIcon fontSize="inherit" />}
-                onChange={(event) => setSelectedClase(event.target.value)}
+                onChange={(event) => {
+                  event.preventDefault();
+                  setSelectedClase(event.target.value);
+                }}
               />
             </div>
           </Col>
           <Col>
-            <div className="status d-flex">
+            <div className="status d-flex" id="estado">
               <p>Estado</p>
               <StyledRating
                 name="customized-color"
@@ -286,7 +297,10 @@ export default function AddHerd() {
                 precision={1}
                 icon={<SquareRoundedIcon fontSize="inherit" />}
                 emptyIcon={<CropSquareRoundedIcon fontSize="inherit" />}
-                onChange={(event) => setSelectedEstado(event.target.value)}
+                onChange={(event) => {
+                  event.preventDefault();
+                  setSelectedEstado(event.target.value);
+                }}
               />
             </div>
           </Col>
@@ -325,8 +339,8 @@ export default function AddHerd() {
               className="mb-3"
             >
               <Form.Control
-                type="number"
-                placeholder="Teléfono"
+                type="text"
+                placeholder="Certificador"
                 onChange={(event) =>
                   setSelectedCertificador(event.target.value)
                 }

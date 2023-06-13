@@ -15,20 +15,14 @@ const Panel = () => {
               <span className="text">Remates</span>
             </Link>
           </li>
-        </ul>
-        <ul className="side-menu">
-          <li>
-            <Link to={"/lote"}>
-              <i className="bx bxs-cog"></i>
-              <span className="text">Lotes</span>
-            </Link>
-          </li>
           <li>
             <Link to={"/usuario"}>
               <i className="bx bxs-cog"></i>
               <span className="text">Usuarios</span>
             </Link>
           </li>
+        </ul>
+        <ul className="side-menu">
           <li>
             <Link href="#" className="logout">
               <i className="bx bxs-log-out-circle"></i>
