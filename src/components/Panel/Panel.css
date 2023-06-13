@@ -177,6 +177,7 @@ body {
   background: #0e4056;
   padding: 0 24px;
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   grid-gap: 24px;
   font-family: var(--lato);
@@ -433,7 +434,7 @@ body {
   border-bottom: 1px solid var(--grey);
 }
 #content main .table-data .order table td {
-  padding: 16px 0;
+  padding: 2px;
 }
 #content main .table-data .order table tr td:first-child {
   display: flex;

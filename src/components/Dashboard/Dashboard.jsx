@@ -153,13 +153,12 @@ const Dashboard = () => {
                     <td>
                       <span className="status completed">Vendido</span>
                     </td>
-                    <td className="d-flex justify-content-between">
+                    <td className="d-flex justify-content-around">
                       <AiOutlineEdit
                         color="orange"
                         cursor="pointer"
                         onClick={() => handleEdit(herd)}
                       />
-
                       <BsTrash3Fill
                         color="red"
                         cursor="pointer"

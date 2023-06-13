@@ -61,17 +61,19 @@ const Usuario = () => {
                 <td>{user.department}</td>
                 <td>{user.email}</td>
                 <td>{user.password}</td>
-                <td className="d-flex justify-content-around align-items-center">
-                  <AiOutlineEdit
-                    color="orange"
-                    cursor="pointer"
-                    onClick={handleEdit}
-                  />
-                  <BsTrash3Fill
-                    color="red"
-                    cursor="pointer"
-                    onClick={handleRemove}
-                  />
+                <td>
+                  <div className="d-flex justify-content-around align-items-center">
+                    <AiOutlineEdit
+                      color="orange"
+                      cursor="pointer"
+                      onClick={handleEdit}
+                    />
+                    <BsTrash3Fill
+                      color="red"
+                      cursor="pointer"
+                      onClick={handleRemove}
+                    />
+                  </div>
                 </td>
               </tr>
             ))}

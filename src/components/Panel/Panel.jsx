@@ -34,12 +34,6 @@ const Panel = () => {
 
       <section id="content">
         <nav>
-          <input type="checkbox" id="switch-mode" hidden />
-          <label htmlFor="switch-mode" className="switch-mode"></label>
-          <Link href="#" className="notification">
-            <i className="bx bxs-bell"></i>
-            <span className="num">8</span>
-          </Link>
           <Link href="#" className="profile">
             <img src="img/people.png" alt="" />
           </Link>
